@@ -34,6 +34,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          fetch-depth: 0
           repository: ${{ github.event.inputs.repository-owner }}/${{ github.event.inputs.repository-name }}
       - name: download and setup path for github actions binary
         run: |
