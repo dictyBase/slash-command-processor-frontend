@@ -67,7 +67,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ github.event.inputs.repository-owner }}/${{ github.event.inputs.repository-name }}:${{ steps.vars.outputs.image_tag }}
+          tags: dictybase/${{ github.event.inputs.repository-name }}:${{ steps.vars.outputs.image_tag }}
           build-args: |
             func_server=https://ericfunc.dictybase.dev
             graphql_server=https://ericgraphql.dictybase.dev
@@ -80,7 +80,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ github.event.inputs.repository-owner }}/${{ github.event.inputs.repository-name }}:${{ steps.vars.outputs.image_tag }}
+          tags: dictybase/${{ github.event.inputs.repository-name }}:${{ steps.vars.outputs.image_tag }}
           build-args: |
             func_server=https://siddfunc.dictybase.dev
             graphql_server=https://siddgraphql.dictybase.dev
