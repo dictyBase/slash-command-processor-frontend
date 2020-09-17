@@ -91,7 +91,7 @@ jobs:
       - name: prepare for deploy
         if: ${{ success() }}
         id: prepare_deploy
-        uses: dictybase-docker/prepare-deploy@v1
+        uses: dictybase-docker/prepare-deploy@59888df2dce7b34ee11d2d7c500b08eb2118e5d5
         with:
           cluster-name: ${{ github.event.inputs.cluster }}
           cluster-zone: "us-central1-a"
