@@ -93,6 +93,8 @@ jobs:
         id: prepare_deploy
         uses: dictybase-docker/prepare-deploy@3f49254d2f39494e5d5c44bf1f0e40afad535265
         with:
+          owner: ${{ github.event.inputs.repository-owner }}
+          repo: ${{ github.event.inputs.repository-name }}
           cluster-name: ${{ github.event.inputs.cluster }}
           cluster-zone: "us-central1-a"
           namespace: dictybase
