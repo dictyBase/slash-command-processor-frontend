@@ -29,7 +29,6 @@ on:
 jobs:
   prepare-deploy:
     runs-on: ubuntu-latest
-    name: Testing deploy
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -99,7 +98,7 @@ jobs:
           cluster-zone: "us-central1-a"
           namespace: dictybase
           chart-name: ${{ github.event.inputs.repository-name }}
-          chart-path: charts/${{ github.event.inputs.repository-name }}
+          chart-path: dictybase/${{ github.event.inputs.repository-name }}
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           image-tag: ${{ steps.vars.outputs.image_tag }}
           ref: ${{ steps.vars.outputs.ref }}
@@ -127,7 +126,7 @@ jobs:
       - name: set in_progress deployment status
         if: ${{ success() }}
         run: actions --log-level debug -t ${{ secrets.REPO_ACCESS_TOKEN }} --owner ${{ github.event.inputs.repository-owner }} -r ${{ github.event.inputs.repository-name }} ds --state in_progress  --deployment_id ${{ steps.deploy_info.outputs.id }} --url ${{ steps.deploy_info.outputs.url }}
-      - name: setup google cloud sdk
+      - name: set up google cloud sdk
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
           version: "307.0.0"
@@ -138,6 +137,8 @@ jobs:
         uses: azure/setup-helm@v1
         with:
           version: "v2.16.9"
+      - name: add dictybase helm repo
+        run: helm repo add dictybase https://dictybase-docker.github.io/kubernetes-charts
       - name: get gcloud credentials for k8s cluster
         run: gcloud container clusters get-credentials --project ${{ secrets.PROJECT_ID }} --zone ${{ steps.deploy_info.outputs.zone }} ${{ steps.deploy_info.outputs.cluster }}
       - name: deploy chart
