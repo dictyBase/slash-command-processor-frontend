@@ -86,7 +86,7 @@ jobs:
       - name: prepare for deploy
         if: ${{ success() }}
         id: prepare_deploy
-        uses: dictybase-docker/prepare-deploy@bf4771b5b65e893b191fa481b210145353f9924f
+        uses: dictybase-docker/prepare-deploy@v2
         with:
           owner: ${{ github.event.inputs.repository-owner }}
           repo: ${{ github.event.inputs.repository-name }}
