@@ -26,6 +26,9 @@ on:
       branch:
         description: "Branch to deploy"
         required: false
+      actor:
+        description: "User issuing the command"
+        required: false
 jobs:
   prepare-deploy:
     runs-on: ubuntu-latest
