@@ -140,7 +140,7 @@ jobs:
       - name: set up helm
         uses: azure/setup-helm@v1
         with:
-          version: "v2.16.12"
+          version: "v2.17.0"
       - name: add dictybase helm repo
         run: helm init --client-only && helm repo add dictybase https://dictybase-docker.github.io/kubernetes-charts
       - name: get gcloud credentials for k8s cluster
